@@ -1,10 +1,13 @@
 import dataclasses
 import http
+import logging
 
 import requests as requests
 
 SCAN_DOMAIN_URL = "https://www.virustotal.com/api/v3/domains"
 
+
+logger = logging.getLogger(__name__)
 
 class VirusTotalError(Exception):
     pass
@@ -37,6 +40,7 @@ class VirusTotalAdapter:
 
         headers = {"x-apikey": self.api_key}
         try:
+            logger.info(f"Sending scan request \n url: {SCAN_DOMAIN_URL}, \n domain: {domain}, \n headers: {headers}")
             resp = requests.get(SCAN_DOMAIN_URL + "/" + domain, headers=headers)
         except Exception as e:
             raise VirusTotalError(

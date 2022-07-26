@@ -10,12 +10,15 @@ from VirusTotalAdapter import VirusTotalAdapter
 
 load_dotenv()
 
+logger = logging.getLogger(__name__)
+
+
 def main():
 
     api_key = os.getenv("API_KEY")
     if not api_key:
         # https://developers.virustotal.com/v3.0/reference#overview
-        logging.error("environment variable API_KEY must be provided")
+        logger.error("environment variable API_KEY must be provided")
         exit(1)
 
     io_mgr = SubProcessInputOutputHandler()
@@ -35,11 +38,11 @@ def main():
         io_mgr.end(result)
 
     except NoFilesFound:
-        logging.info("No files to check")
+        logger.info("No files to check")
         io_mgr.end({})
 
     except Exception as e:
-        logging.error(e)
+        logger.error(e)
         exit(1)
 
 
