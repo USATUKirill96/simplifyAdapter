@@ -26,23 +26,23 @@ class DomainFile:
             file_input: dict = json.load(f)
         self.validate(file_input)
 
-        return file_input["urls"]
+        return file_input["domains"]
 
     @staticmethod
     def validate(j: dict) -> None:
         """Validates if the input structure follows the expected contract"""
 
-        urls: [str] = j.get("urls", None)
-        if not urls:
-            raise IncorrectInput("Key 'urls' must be provided")
+        domains: [str] = j.get("domains", None)
+        if not domains:
+            raise IncorrectInput("Key 'domains' must be provided")
 
-        if not isinstance(urls, list):
-            raise IncorrectInput("Value of 'urls' must be a list of strings")
+        if not isinstance(domains, list):
+            raise IncorrectInput("Value of 'domains' must be a list of strings")
 
         domain: str
-        for domain in urls:
+        for domain in domains:
             if not isinstance(domain, str):
-                raise IncorrectInput("Value of 'urls' must be a list of strings")
+                raise IncorrectInput("Value of 'domains' must be a list of strings")
 
     def mark_checked(self) -> None:
         idx = self.path.index(".json")

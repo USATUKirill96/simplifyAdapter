@@ -27,7 +27,7 @@ def main():
 
         result = {}
 
-        for i in range(min(len(domains) - 1, params.iteration_entities_count)):
+        for i in range(min(len(domains), params.iteration_entities_count)):
             res = adapter.scan(domains[i])
             result[domains[i]] = dataclasses.asdict(res)
 
