@@ -5,7 +5,7 @@ import os
 from dotenv import load_dotenv
 
 from DomainFile import DomainFileList, NoFilesFound
-from SubProcessInputOutputHandler import InputError, SubProcessInputOutputHandler
+from SubProcessInputOutputHandler import SubProcessInputOutputHandler
 from VirusTotalAdapter import VirusTotalAdapter
 
 load_dotenv()
